@@ -25,11 +25,12 @@ RSpec.describe Log::Parser::UniquePageViews do
 
   context "initialization" do
     it "initializes with a list of viewd pages and associated ip address" do
-      views = Log::Parser::UniquePageViews.new(page_views)
-      expect(views).not_to eq nil
-      expect(views.pages_views).to be_a Array
-      expect(views.pages_views.any?{|h| h[:url] == "/about"}).to eq true
-      expect(views.pages_views.any?{|h| h[:ip] == "126.318.035.038"}).to eq true
+      unique_views = Log::Parser::UniquePageViews.new(page_views)
+      expect(unique_views).not_to eq nil
+      expect(unique_views.pages_views).to be_a Array
+      expect(unique_views.pages_views.any?{|h| h[:url] == "/about"}).to eq true
+      expect(unique_views.pages_views.any?{|h| h[:ip] == "126.318.035.038"}).to eq true
     end
   end
+  
 end
