@@ -23,11 +23,10 @@ RSpec.describe Log::Parser::MostPageViews do
 
   context "initialization" do
     it "initializes with a list of visited pages" do
-      most_page_views = Log::Parser::MostPageViews.new(pages)
-      expect(most_page_views).not_to eq nil
-      expect(most_page_views.pages).to be_a Array
+      visited_pages = Log::Parser::MostPageViews.new(pages)
+      expect(visited_pages).not_to eq nil
+      expect(visited_pages.pages).to be_a Array
       expect(most_page_views.pages.empty?).to eq false
-      expect(most_page_views.pages.any?{|p| p == "/contact"}).to eq true
     end
   end
 
