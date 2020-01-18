@@ -32,5 +32,13 @@ RSpec.describe Log::Parser::UniquePageViews do
       expect(unique_views.pages_views.any?{|h| h[:ip] == "126.318.035.038"}).to eq true
     end
   end
-  
+
+  describe "#unique_visits" do
+    it "returns a list of unique page views ordered from highest to lowest" do
+      unique_views = Log::Parser::UniquePageViews.new(page_views)
+      expect(unique_views.unique_visits).to eq [["/about", 2], ["/index", 2], ["/home", 0], ["/help_page/1", 0], ["/about/2", 0]]
+
+    end
+  end
+
 end
