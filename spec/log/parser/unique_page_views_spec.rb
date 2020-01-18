@@ -28,8 +28,7 @@ RSpec.describe Log::Parser::UniquePageViews do
       unique_views = Log::Parser::UniquePageViews.new(page_views)
       expect(unique_views).not_to eq nil
       expect(unique_views.pages_views).to be_a Array
-      expect(unique_views.pages_views.any?{|h| h[:url] == "/about"}).to eq true
-      expect(unique_views.pages_views.any?{|h| h[:ip] == "126.318.035.038"}).to eq true
+      expect(unique_views.pages_views.empty?).to eq false
     end
   end
 
