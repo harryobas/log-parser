@@ -1,5 +1,5 @@
 require "log/parser/version"
-require "log/parser/most_visited_pages_extractor"
+require "log/parser/most_page_views"
 
 module Log
   module Parser
