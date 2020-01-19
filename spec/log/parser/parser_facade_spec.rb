@@ -15,5 +15,10 @@ end
       file = "server.log"
       expect{Log::Parser::ParserFacade.new(file)}.to raise_error(Log::Parser::Error, "file not found")
     end
+    it "raises error when file is empty" do
+      file = File.expand_path("spec/fixtures/web_empty.log")
+      expect{Log::Parser::ParserFacade.new(file)}.to raise_error(Log::Parser::Error, "file is empty")
+    end
   end
+
 end
