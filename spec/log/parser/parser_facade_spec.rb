@@ -20,5 +20,14 @@ end
       expect{Log::Parser::ParserFacade.new(file)}.to raise_error(Log::Parser::Error, "file is empty")
     end
   end
+  describe "#list_of_unique_page_views" do
+    it "gets list of unique page views" do
+      file = File.expand_path("spec/fixtures/web.log")
+      parser_facade = Log::Parser::ParserFacade.new(file)
+      Log::Parser::UniquePageViews.any_instance.expects(:unique_visits).returns(result)
+      parser_facade.list_of_unique_page_views
+    end
+
+  end
 
 end
