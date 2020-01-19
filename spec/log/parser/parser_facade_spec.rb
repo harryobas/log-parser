@@ -23,6 +23,14 @@ RSpec.describe Log::Parser::ParserFacade do
       Log::Parser::UniquePageViews.any_instance.expects(:unique_visits)
       parser_facade.list_of_unique_page_views
     end
+  end
+  describe "#list_of_most_viewed_pages" do
+    it "gets list of most viewd pages" do
+      file = File.expand_path("spec/fixtures/web.log")
+      parser_facade = Log::Parser::ParserFacade.new(file)
+      Log::Parser::MostPageViews.any_instance.expects(:most_viewed)
+      parser_facade.list_of_most_viewed_pages
+    end
 
   end
 

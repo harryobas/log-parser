@@ -1,5 +1,6 @@
 class Log::Parser::MostPageViews
   attr_reader :pages
+
   def initialize(pages)
     @pages = pages
   end
