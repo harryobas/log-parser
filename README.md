@@ -1,43 +1,20 @@
 # Log::Parser
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/log/parser`. To experiment with that code, run `bin/console` for an interactive prompt.
+A script/application that parses web requests log. It receives a plain text file containing requested web pages and associated request ip addresses and returns both a list of web pages with most page views ordered from most pages views to less page views and a list of web pages with most unique page views also ordered.
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'log-parser'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install log-parser
 
 ## Usage
 
-TODO: Write usage instructions here
+ A Dockerfile is included to enable ease of execution on either Linux, mac or windows. To run on Linux, make sure to have docker installed on your machine and follow the instructions below:
 
-## Development
+1. $ git clone https://github.com/harryobas/log-parser.git
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+2. $ cd log-parser
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+3. $ sudo docker build . -t "parser"
 
-## Contributing
+4. $ sudo docker run -i -t parser:latest
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/log-parser. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+5. log-parser# bin/parser webserver.log
 
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Log::Parser project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/log-parser/blob/master/CODE_OF_CONDUCT.md).
+NB: The file webserver.log is already included in the project root folder
