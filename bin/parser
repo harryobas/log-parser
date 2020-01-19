@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "log/parser"
+
+def print_page_with_most_views(list)
+  puts "webpages with most page views"
+  puts
+
+  list.each do |page, views|
+    puts "#{page} #{views} visits".green
+  end
+end
+
+def print_page_with_most_unique_views(list)
+  puts "webpages with most unique views"
+  puts
+
+  list.each do |page, views|
+    puts "#{page} #{views} unique views".green
+  end
+end
+
+def main(file)
+  parser_facade = Log::Parser::ParserFacade.new(file)
+
+  most_viewed_list = parser_facade.list_of_most_viewed_pages
+  unique_views_list = parser_facade.list_of_unique_page_views
+
+  print_page_with_most_views(most_viewed_list)
+  puts 
+  print_page_with_most_unique_views(unique_views_list)
+  rescue Log::Parser::Error => e
+    abort "error: #{e.message}".red
+end
+
+abort "parser [file_path]".red if ARGV[0].nil?
+
+if __FILE__ == $PROGRAM_NAME
+  main(ARGV[0])
+end
