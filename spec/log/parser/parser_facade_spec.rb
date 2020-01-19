@@ -11,5 +11,9 @@ end
       file = File.expand_path("spec/fixtures/web.log")
       expect(Log::Parser::ParserFacade.new(file)).not_to eq nil
     end
+    it "raises error when file does not exist" do
+      file = "server.log"
+      expect{Log::Parser::ParserFacade.new(file)}.to raise_error(Log::Parser::Error, "file not found")
+    end
   end
-end 
+end
