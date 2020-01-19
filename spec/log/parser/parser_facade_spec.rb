@@ -2,8 +2,13 @@ require "spec_helper"
 
 RSpec.describe Log::Parser::ParserFacade do
 
-  let :result do
+  let :result_one do
   [["/help_page/1", 5], ["/about", 5], ["/index", 4], ["/home", 1], ["/about/2", 1]]
+end
+
+let :result_two do
+  [["/help_page/1", 5], ["/about", 5], ["/index", 4], ["/home", 1], ["/about/2", 1]]
+
 end
 
   context "initalization" do
@@ -26,6 +31,9 @@ end
       parser_facade = Log::Parser::ParserFacade.new(file)
       Log::Parser::UniquePageViews.any_instance.expects(:unique_visits).returns(result)
       parser_facade.list_of_unique_page_views
+    end
+    it "#list_of_most_viewed_pages" do
+
     end
 
   end

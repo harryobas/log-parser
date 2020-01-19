@@ -16,7 +16,9 @@ class Log::Parser::UniquePageViews
   private
 
   def reduce(arr)
-    arr.select{|a| arr.count(a) > 1}.size
+    arr
+    .select{|a| arr.count(a) > 1}
+    .uniq.size
   end
 
 end

@@ -35,8 +35,7 @@ RSpec.describe Log::Parser::UniquePageViews do
   describe "#unique_visits" do
     it "returns a list of unique page views ordered from highest to lowest" do
       unique_views = Log::Parser::UniquePageViews.new(page_views)
-      expect(unique_views.unique_visits).to eq [["/about", 2], ["/index", 2], ["/home", 0], ["/help_page/1", 0], ["/about/2", 0]]
-
+      expect(unique_views.unique_visits).to eq [["/about", 1], ["/index", 1], ["/home", 0], ["/help_page/1", 0], ["/about/2", 0]]
     end
   end
 
