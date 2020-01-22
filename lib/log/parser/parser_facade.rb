@@ -9,10 +9,12 @@ class Log::Parser::ParserFacade
     raise Log::Parser::Error.new, "file not found" unless File.exist?(@file_path)
     raise Log::Parser::Error.new, "file is empty" if File.zero?(@file_path)
 
-    @most_viewed_raw = extract_raw_list_for_most_viewed(@file_path)
+    raw_lists = extract_raw_lists(@file_path)
+
+    @most_viewed_raw = raw_lists.first
     @most_page_views = Log::Parser::MostPageViews.new(@most_viewed_raw)
 
-    @unique_raw = extract_raw_list_for_unique_views(@file_path)
+    @unique_raw = raw_lists.last
     @unique_page_views = Log::Parser::UniquePageViews.new(@unique_raw)
   end
 
@@ -26,16 +28,15 @@ class Log::Parser::ParserFacade
 
   private
 
-  def extract_raw_list_for_most_viewed(file)
-    File.open(file) do |f|
-      f.map {|line| line.split[0]}
-    end
-  end
-
-  def extract_raw_list_for_unique_views(file)
-    File.open(file) do |f|
+  def extract_raw_lists(file)
+    unique_raw = File.open(file) do |f|
       f.map{|line| {url: line.split[0], ip: line.split[1]}}
     end
+
+    most_viewed_raw = unique_raw
+    .map{|r| r[:url]}
+
+    [most_viewed_raw, unique_raw]
   end
 
 end
