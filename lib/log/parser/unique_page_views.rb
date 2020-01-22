@@ -9,13 +9,13 @@ class Log::Parser::UniquePageViews
     pages_views
     .group_by{|request| request[:url]}
     .each{|url, requests| requests.map!{|r| r[:ip]}}
-    .each_with_object({}){|(k,v), hash| hash[k] = reduce(v)}
+    .each_with_object({}){|(k,v), hash| hash[k] = aggregate(v)}
     .to_a.sort_by{|_, n| n}.reverse
   end
 
   private
 
-  def reduce(arr)
+  def aggregate(arr)
     arr
     .select{|a| arr.count(a) >= 1}
     .uniq.size

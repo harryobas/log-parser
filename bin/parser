@@ -3,22 +3,21 @@
 require "bundler/setup"
 require "log/parser"
 
-def print_page_with_most_views(list)
+def print_page_views(list_one, list_two)
   puts "webpages with most page views"
   puts
 
-  list.each do |page, views|
+  list_one.each do |page, views|
     puts "#{page} #{views} visits".green
   end
-end
 
-def print_page_with_most_unique_views(list)
   puts "webpages with most unique views"
   puts
 
-  list.each do |page, views|
+  list_two.each do |page, views|
     puts "#{page} #{views} unique views".green
   end
+
 end
 
 def main(file)
@@ -27,9 +26,8 @@ def main(file)
   most_viewed_list = parser_facade.list_of_most_viewed_pages
   unique_views_list = parser_facade.list_of_unique_page_views
 
-  print_page_with_most_views(most_viewed_list)
-  puts 
-  print_page_with_most_unique_views(unique_views_list)
+  print_page_views(most_viewed_list, unique_views_list)
+
   rescue Log::Parser::Error => e
     abort "error: #{e.message}".red
 end
