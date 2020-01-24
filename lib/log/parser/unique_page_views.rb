@@ -1,12 +1,11 @@
 class Log::Parser::UniquePageViews
-  attr_reader :pages_views
 
   def initialize(pages_views)
     @pages_views = pages_views
   end
 
   def unique_visits
-    pages_views
+    @pages_views
     .group_by{|request| request[:url]}
     .each{|url, requests| requests.map!{|r| r[:ip]}}
     .each_with_object({}){|(k,v), hash| hash[k] = aggregate(v)}
